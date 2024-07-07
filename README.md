@@ -65,11 +65,19 @@
 
 ## 📅 Sprint Board:
 
-### 📸 Screenshots
+### 📸 Screenshot
+
+![Sprint Board Screenshot](https://github.com/azaliyasli/BootCampGroup2/blob/main/Readme%20Screenshots%20and%20Logo/Sprint%20Board%20Screenshot/sprint-board-1.png)
 
 ## 📱 App Development:
 
 ### 📸 Screenshots
+
+![App Development Screenshot](https://github.com/azaliyasli/BootCampGroup2/blob/main/Readme%20Screenshots%20and%20Logo/App%20Development%20Screenshots/app-development-1.jpg)
+
+![App Development Screenshot](https://github.com/azaliyasli/BootCampGroup2/blob/main/Readme%20Screenshots%20and%20Logo/App%20Development%20Screenshots/app-development-2.jpg)
+
+![App Development Screenshot](https://github.com/azaliyasli/BootCampGroup2/blob/main/Readme%20Screenshots%20and%20Logo/App%20Development%20Screenshots/app-development-3.jpg)
 
 ## 💬 Sprint Review:
 
