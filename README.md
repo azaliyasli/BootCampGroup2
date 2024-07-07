@@ -15,7 +15,7 @@
 
 ## 💯 Expected Point Completion within Sprint:
 
-   <p style="font-size: 36px; font-weight: bold; font-family: Manrope; text-shadow: 2px 2px 2px black">550</p>
+`550`
 
 ### 🧠 Point Completion Logic:
 
@@ -30,6 +30,28 @@
 ![Daily Scrum Screenshot](https://github.com/azaliyasli/BootCampGroup2/blob/main/Readme%20Screenshots%20and%20Logo/Daily%20Scrum%20Screenshots/IMG_4727.PNG)
 
 ![Daily Scrum Screenshot](https://github.com/azaliyasli/BootCampGroup2/blob/main/Readme%20Screenshots%20and%20Logo/Daily%20Scrum%20Screenshots/IMG_4728.PNG)
+
+![Daily Scrum Screenshot](https://github.com/azaliyasli/BootCampGroup2/blob/main/Readme%20Screenshots%20and%20Logo/Daily%20Scrum%20Screenshots/IMG_4729.PNG)
+
+![Daily Scrum Screenshot](https://github.com/azaliyasli/BootCampGroup2/blob/main/Readme%20Screenshots%20and%20Logo/Daily%20Scrum%20Screenshots/IMG_4730.PNG)
+
+![Daily Scrum Screenshot](https://github.com/azaliyasli/BootCampGroup2/blob/main/Readme%20Screenshots%20and%20Logo/Daily%20Scrum%20Screenshots/IMG_4731.PNG)
+
+![Daily Scrum Screenshot](https://github.com/azaliyasli/BootCampGroup2/blob/main/Readme%20Screenshots%20and%20Logo/Daily%20Scrum%20Screenshots/IMG_4732.PNG)
+
+![Daily Scrum Screenshot](https://github.com/azaliyasli/BootCampGroup2/blob/main/Readme%20Screenshots%20and%20Logo/Daily%20Scrum%20Screenshots/IMG_4733.PNG)
+
+![Daily Scrum Screenshot](https://github.com/azaliyasli/BootCampGroup2/blob/main/Readme%20Screenshots%20and%20Logo/Daily%20Scrum%20Screenshots/IMG_4734.PNG)
+
+![Daily Scrum Screenshot](https://github.com/azaliyasli/BootCampGroup2/blob/main/Readme%20Screenshots%20and%20Logo/Daily%20Scrum%20Screenshots/IMG_4735.PNG)
+
+![Daily Scrum Screenshot](https://github.com/azaliyasli/BootCampGroup2/blob/main/Readme%20Screenshots%20and%20Logo/Daily%20Scrum%20Screenshots/IMG_4736.PNG)
+
+![Daily Scrum Screenshot](https://github.com/azaliyasli/BootCampGroup2/blob/main/Readme%20Screenshots%20and%20Logo/Daily%20Scrum%20Screenshots/IMG_4737.PNG)
+
+![Daily Scrum Screenshot](https://github.com/azaliyasli/BootCampGroup2/blob/main/Readme%20Screenshots%20and%20Logo/Daily%20Scrum%20Screenshots/IMG_4738.PNG)
+
+![Daily Scrum Screenshot](https://github.com/azaliyasli/BootCampGroup2/blob/main/Readme%20Screenshots%20and%20Logo/Daily%20Scrum%20Screenshots/IMG_4739.PNG)
 
 ## 📅 Sprint Board:
 
