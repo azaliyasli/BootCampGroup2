@@ -15,7 +15,7 @@
 
 ## 💯 Expected Point Completion within Sprint:
 
-`550`
+### `550`
 
 ### 🧠 Point Completion Logic:
 
@@ -25,59 +25,19 @@
 
 ### 📸 Screenshots
 
-![Daily Scrum Screenshot](https://github.com/azaliyasli/BootCampGroup2/blob/main/Readme%20Screenshots%20and%20Logo/Daily%20Scrum%20Screenshots/IMG_4726.PNG)
-
-![Daily Scrum Screenshot](https://github.com/azaliyasli/BootCampGroup2/blob/main/Readme%20Screenshots%20and%20Logo/Daily%20Scrum%20Screenshots/IMG_4727.PNG)
-
-![Daily Scrum Screenshot](https://github.com/azaliyasli/BootCampGroup2/blob/main/Readme%20Screenshots%20and%20Logo/Daily%20Scrum%20Screenshots/IMG_4728.PNG)
-
-![Daily Scrum Screenshot](https://github.com/azaliyasli/BootCampGroup2/blob/main/Readme%20Screenshots%20and%20Logo/Daily%20Scrum%20Screenshots/IMG_4729.PNG)
-
-![Daily Scrum Screenshot](https://github.com/azaliyasli/BootCampGroup2/blob/main/Readme%20Screenshots%20and%20Logo/Daily%20Scrum%20Screenshots/IMG_4730.PNG)
-
-![Daily Scrum Screenshot](https://github.com/azaliyasli/BootCampGroup2/blob/main/Readme%20Screenshots%20and%20Logo/Daily%20Scrum%20Screenshots/IMG_4731.PNG)
-
-![Daily Scrum Screenshot](https://github.com/azaliyasli/BootCampGroup2/blob/main/Readme%20Screenshots%20and%20Logo/Daily%20Scrum%20Screenshots/IMG_4732.PNG)
-
-![Daily Scrum Screenshot](https://github.com/azaliyasli/BootCampGroup2/blob/main/Readme%20Screenshots%20and%20Logo/Daily%20Scrum%20Screenshots/IMG_4733.PNG)
-
-![Daily Scrum Screenshot](https://github.com/azaliyasli/BootCampGroup2/blob/main/Readme%20Screenshots%20and%20Logo/Daily%20Scrum%20Screenshots/IMG_4734.PNG)
-
-![Daily Scrum Screenshot](https://github.com/azaliyasli/BootCampGroup2/blob/main/Readme%20Screenshots%20and%20Logo/Daily%20Scrum%20Screenshots/IMG_4735.PNG)
-
-![Daily Scrum Screenshot](https://github.com/azaliyasli/BootCampGroup2/blob/main/Readme%20Screenshots%20and%20Logo/Daily%20Scrum%20Screenshots/IMG_4736.PNG)
-
-![Daily Scrum Screenshot](https://github.com/azaliyasli/BootCampGroup2/blob/main/Readme%20Screenshots%20and%20Logo/Daily%20Scrum%20Screenshots/IMG_4737.PNG)
-
-![Daily Scrum Screenshot](https://github.com/azaliyasli/BootCampGroup2/blob/main/Readme%20Screenshots%20and%20Logo/Daily%20Scrum%20Screenshots/IMG_4738.PNG)
-
-![Daily Scrum Screenshot](https://github.com/azaliyasli/BootCampGroup2/blob/main/Readme%20Screenshots%20and%20Logo/Daily%20Scrum%20Screenshots/IMG_4739.PNG)
-
-![Daily Scrum Screenshot](https://github.com/azaliyasli/BootCampGroup2/blob/main/Readme%20Screenshots%20and%20Logo/Daily%20Scrum%20Screenshots/IMG-20240707-WA0008.jpg)
-
-![Daily Scrum Screenshot](https://github.com/azaliyasli/BootCampGroup2/blob/main/Readme%20Screenshots%20and%20Logo/Daily%20Scrum%20Screenshots/IMG-20240707-WA0009.jpg)
-
-![Daily Scrum Screenshot](https://github.com/azaliyasli/BootCampGroup2/blob/main/Readme%20Screenshots%20and%20Logo/Daily%20Scrum%20Screenshots/IMG-20240707-WA0010.jpg)
-
-![Daily Scrum Screenshot](https://github.com/azaliyasli/BootCampGroup2/blob/main/Readme%20Screenshots%20and%20Logo/Daily%20Scrum%20Screenshots/IMG-20240707-WA0011.jpg)
-
-![Daily Scrum Screenshot](https://github.com/azaliyasli/BootCampGroup2/blob/main/Readme%20Screenshots%20and%20Logo/Daily%20Scrum%20Screenshots/IMG-20240707-WA0012.jpg)
+![Daily Scrum Screenshot](./sprintOneFiles/dailyScrumsScreenshots/sprint-one-daily-scrums-ss.png)
 
 ## 📅 Sprint Board:
 
 ### 📸 Screenshot
 
-![Sprint Board Screenshot](https://github.com/azaliyasli/BootCampGroup2/blob/main/Readme%20Screenshots%20and%20Logo/Sprint%20Board%20Screenshot/sprint-board-1.png)
+![Sprint Board Screenshot](./sprintOneFiles/sprintBoardScreenshots/sprint-1-sprint-board-ss.png)
 
 ## 📱 App Development:
 
 ### 📸 Screenshots
 
-![App Development Screenshot](https://github.com/azaliyasli/BootCampGroup2/blob/main/Readme%20Screenshots%20and%20Logo/App%20Development%20Screenshots/app-development-1.jpg)
-
-![App Development Screenshot](https://github.com/azaliyasli/BootCampGroup2/blob/main/Readme%20Screenshots%20and%20Logo/App%20Development%20Screenshots/app-development-2.jpg)
-
-![App Development Screenshot](https://github.com/azaliyasli/BootCampGroup2/blob/main/Readme%20Screenshots%20and%20Logo/App%20Development%20Screenshots/app-development-3.jpg)
+![App Development Screenshot](./sprintOneFiles/appDevelopmentScreenshots/sprint-one-app-development-ss.png)
 
 ## 💬 Sprint Review:
 
@@ -133,7 +93,7 @@ await _auth.signOut(); }}
 
 🚩 We discovered APIs and solution methods for the news summaries we plan to add to our application using open-source AI-powered scraping sites. We realized that most of these packages are in Python and that we need to work on obtaining the desired data structures through prompt engineering.
 
-```json
+```dart
 {
 "news" : [
     0 : {
