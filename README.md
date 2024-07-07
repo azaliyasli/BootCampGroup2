@@ -53,6 +53,16 @@
 
 ![Daily Scrum Screenshot](https://github.com/azaliyasli/BootCampGroup2/blob/main/Readme%20Screenshots%20and%20Logo/Daily%20Scrum%20Screenshots/IMG_4739.PNG)
 
+![Daily Scrum Screenshot](https://github.com/azaliyasli/BootCampGroup2/blob/main/Readme%20Screenshots%20and%20Logo/Daily%20Scrum%20Screenshots/IMG-20240707-WA0008.jpg)
+
+![Daily Scrum Screenshot](https://github.com/azaliyasli/BootCampGroup2/blob/main/Readme%20Screenshots%20and%20Logo/Daily%20Scrum%20Screenshots/IMG-20240707-WA0009.jpg)
+
+![Daily Scrum Screenshot](https://github.com/azaliyasli/BootCampGroup2/blob/main/Readme%20Screenshots%20and%20Logo/Daily%20Scrum%20Screenshots/IMG-20240707-WA0010.jpg)
+
+![Daily Scrum Screenshot](https://github.com/azaliyasli/BootCampGroup2/blob/main/Readme%20Screenshots%20and%20Logo/Daily%20Scrum%20Screenshots/IMG-20240707-WA0011.jpg)
+
+![Daily Scrum Screenshot](https://github.com/azaliyasli/BootCampGroup2/blob/main/Readme%20Screenshots%20and%20Logo/Daily%20Scrum%20Screenshots/IMG-20240707-WA0012.jpg)
+
 ## 📅 Sprint Board:
 
 ### 📸 Screenshots
