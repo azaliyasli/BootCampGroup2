@@ -97,7 +97,48 @@
 
 🚩 We learned how to perform user registration and login operations with Firebase. Users can log into the application with their email addresses and Google accounts. For users trying to log in with their email accounts, a verification link is sent to their registered email addresses. When users forget their passwords, they can set a new password using the "forgot my password" option sent to their registered email address.
 
-🚩 We discovered APIs and solution methods for the news summaries we plan to add to our application using open-source AI-powered scraping sites. We realized that most of these packages are in Python and that we need to work on obtaining the desired data structures through prompt engineering
+```dart
+class AuthMethod {
+final FirebaseFirestore _firestore=FirebaseFirestore.instance;
+final FirebaseAuth _auth=FirebaseAuth. instance;
+
+// SignUp User
+
+Future<String> signupUser ({
+  required String email,
+  required String password,
+  required String name,
+}）async {...｝
+
+// logIn user
+
+Future<String> loginUser ({
+  required String email,
+  required String password,
+}）async {...｝
+
+// sign out
+
+Future<void> signOut() async {
+await _auth.signOut(); }}
+```
+
+🚩 We discovered APIs and solution methods for the news summaries we plan to add to our application using open-source AI-powered scraping sites. We realized that most of these packages are in Python and that we need to work on obtaining the desired data structures through prompt engineering.
+
+```json
+{
+"news" : [
+    0 : {
+         "title": "Fransa'da sandık çıkış anketlerinde sol ittifak sürprizi"
+         "abstract" : "07.07.24"
+         "image_url" : "https://geoim.bloomberght.com/2024/07/07/ver1720377827/2356030_620x349.jpg"
+         }
+
+    1 :  {
+         "title" : "Spot piyasada elektrik fiyatları (07.07.24)"
+         "abstract" : ""
+        }]}
+```
 
 </body>
 </html>
