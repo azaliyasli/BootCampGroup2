@@ -1,3 +1,6 @@
+<html lang="en">
+<body>
+
 # 🕙 Sprint 1
 
 ## 📒 Sprint Notes:
@@ -21,6 +24,12 @@
 ## 🚀 Daily Scrums:
 
 ### 📸 Screenshots
+
+![Daily Scrum Screenshot](https://github.com/azaliyasli/BootCampGroup2/blob/main/Readme%20Screenshots%20and%20Logo/Daily%20Scrum%20Screenshots/IMG_4726.PNG)
+
+![Daily Scrum Screenshot](https://github.com/azaliyasli/BootCampGroup2/blob/main/Readme%20Screenshots%20and%20Logo/Daily%20Scrum%20Screenshots/IMG_4727.PNG)
+
+![Daily Scrum Screenshot](https://github.com/azaliyasli/BootCampGroup2/blob/main/Readme%20Screenshots%20and%20Logo/Daily%20Scrum%20Screenshots/IMG_4728.PNG)
 
 ## 📅 Sprint Board:
 
@@ -57,3 +66,6 @@
 🚩 We learned how to perform user registration and login operations with Firebase. Users can log into the application with their email addresses and Google accounts. For users trying to log in with their email accounts, a verification link is sent to their registered email addresses. When users forget their passwords, they can set a new password using the "forgot my password" option sent to their registered email address.
 
 🚩 We discovered APIs and solution methods for the news summaries we plan to add to our application using open-source AI-powered scraping sites. We realized that most of these packages are in Python and that we need to work on obtaining the desired data structures through prompt engineering
+
+</body>
+</html>
