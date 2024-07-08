@@ -19,7 +19,7 @@
       <th>Links</th>
     </tr>
     <tr>
-      <td><img src="./otherFiles/profilePictures/asli-akin-pp.png" width="50" height="50" style="padding-top: 8px" /></td>
+      <td><img src="./otherFiles/profilePictures/asli-akin-pp.png" width="50" height="50"/></td>
       <td>Aslı Akın</td>
       <td>Scrum Master</td>
       <td>
@@ -49,7 +49,7 @@
       </td>
     </tr>
     <tr>
-      <td><img src="./otherFiles/profilePictures/ali-yildiz-pp.png" width="50" height="50" style="padding-top: 8px" /></td>
+      <td><img src="./otherFiles/profilePictures/ali-yildiz-pp.png" width="50" height="50" /></td>
       <td>Ali Yıldız</td>
       <td>Developer</td>
       <td>
@@ -59,7 +59,7 @@
       </td>
     </tr>
     <tr>
-      <td><img src="./otherFiles/profilePictures/yavuz-karakus-pp.png" width="50" height="50" style="padding-top: 8px" /></td>
+      <td><img src="./otherFiles/profilePictures/yavuz-karakus-pp.png" width="50" height="50" /></td>
       <td>Yavuz Karakuş</td>
       <td>Developer | Designer</td>
       <td>
@@ -90,49 +90,43 @@
 
 #### Stock Market Tracking:
 
-<img src="./otherFiles/icons/hesapp-icon.png" width="20" align="center">
-&nbsp;Stay updated with real-time stock market data. Monitor your portfolio, track stock prices, and receive alerts for significant market movements.
+- Stay updated with real-time stock market data. Monitor your portfolio, track stock prices, and receive alerts for significant market movements.
 
 #### Gold/Silver Tracking:
 
-<img src="./otherFiles/icons/hesapp-icon.png" width="20" align="center">
-&nbsp;Keep an eye on the fluctuating prices of precious metals like gold and silver. Receive timely updates and alerts to make informed decisions about your investments.
+- Keep an eye on the fluctuating prices of precious metals like gold and silver. Receive timely updates and alerts to make informed decisions about your investments.
 
 #### Currency Tracking:
 
-<img src="./otherFiles/icons/hesapp-icon.png" width="20" align="center">
-&nbsp;Track real-time exchange rates for multiple currencies. Stay informed about global currency fluctuations and make the best choices for your international transactions.
+- Track real-time exchange rates for multiple currencies. Stay informed about global currency fluctuations and make the best choices for your international transactions.
 
 #### Personalized Stock/Forex/Economy News:
 
-<img src="./otherFiles/icons/hesapp-icon.png" width="20" align="center">
-&nbsp;Get personalized news updates based on your interests. Receive the latest news on stocks, forex, and the economy tailored to your preferences and portfolio.
+- Get personalized news updates based on your interests. Receive the latest news on stocks, forex, and the economy tailored to your preferences and portfolio.
 
 #### E-Wallet (Optional):
 
-<img src="./otherFiles/icons/hesapp-icon.png" width="20" align="center">
-&nbsp;Manage your digital transactions effortlessly with our integrated e-wallet feature. Securely store your money, make transactions, and keep track of your spending all in one place.
+- Manage your digital transactions effortlessly with our integrated e-wallet feature. Securely store your money, make transactions, and keep track of your spending all in one place.
 
 #### AI-Powered Financial Advisor:
 
-<img src="./otherFiles/icons/hesapp-icon.png" width="20" align="center">
-&nbsp;Get expert financial advice at your fingertips with our AI-supported financial advisor. Receive personalized recommendations and insights to help you make the best investment decisions.
+- Get expert financial advice at your fingertips with our AI-supported financial advisor. Receive personalized recommendations and insights to help you make the best investment decisions.
 
 #### Budget Management:
 
-<img src="./otherFiles/icons/hesapp-icon.png" width="20" align="center">
-&nbsp;Take control of your finances with our robust budget management tools. Track your income, expenses, and savings, and set financial goals to stay on track.
+- Take control of your finances with our robust budget management tools. Track your income, expenses, and savings, and set financial goals to stay on track.
 
 #### AI-Supported Budget Management Advisor:
 
-<img src="./otherFiles/icons/hesapp-icon.png" width="20" align="center">
-&nbsp;Enhance your budgeting experience with our AI-powered budget management advisor. Receive intelligent advice and suggestions to optimize your budget and achieve your financial goals.
+- Enhance your budgeting experience with our AI-powered budget management advisor. Receive intelligent advice and suggestions to optimize your budget and achieve your financial goals.
 
 ### 🚶🏻‍♂️ User Profiles
 
 ![User Profile](./sprintOneFiles/userProfiles/User-Profile-F.png)
 
-<hr>
+<img src="./otherFiles/icons/hesapp-icon.png">
+
+###
 
 ![User Profile](./sprintOneFiles/userProfiles/User-Profile-M.png)
 
@@ -167,7 +161,7 @@
 
 ## 💯 Expected Point Completion within Sprint:
 
-### `550`
+<img src="./otherFiles/icons/point-icon.png" width="90">
 
 ### 🧠 Point Completion Logic:
 
