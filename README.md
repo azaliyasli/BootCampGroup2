@@ -124,7 +124,7 @@
 
 ![User Profile](./sprintOneFiles/userProfiles/User-Profile-F.png)
 
-![Hesapp Icon](./otherFiles/icons/hesapp-icon.png)
+![Hesapp Icon](./otherFiles/icons/hesapp-line-icon.png)
 
 ###
 
