@@ -4,9 +4,17 @@ import 'package:html/parser.dart' as parser;
 import 'package:html/dom.dart' as dom;
 import 'dart:async';
 import 'package:google_generative_ai/google_generative_ai.dart';
+import 'package:intl/intl.dart';
+import 'dart:math';
+import 'package:provider/provider.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(
+    ChangeNotifierProvider(
+      create: (context) => WalletProvider(),
+      child: const MyApp(),
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {
@@ -34,6 +42,7 @@ class StockList extends StatefulWidget {
 class _StockListState extends State<StockList> {
   late Future<Map<String, dynamic>> futureData;
   Timer? _timer;
+  int _selectedIndex = 0;
 
   Future<List<List<String>>> getWebsiteData() async {
     final url = Uri.parse('https://www.getmidas.com/canli-borsa/xu100-bist-100-hisseleri');
@@ -102,6 +111,35 @@ class _StockListState extends State<StockList> {
   void dispose() {
     _timer?.cancel();
     super.dispose();
+  }
+
+  void _onItemTapped(int index) {
+    setState(() {
+      _selectedIndex = index;
+      if (_selectedIndex == 0) {
+        // Do nothing, already on StockList page
+      } else if (_selectedIndex == 1) {
+        futureData.then((data) {
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => TextGenerationPage(stockData: data['stockData'], currencyData: data['currencyData'])),
+          ).then((_) {
+            setState(() {
+              _selectedIndex = 0;
+            });
+          });
+        });
+      } else if (_selectedIndex == 2) {
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => WalletPage()),
+        ).then((_) {
+          setState(() {
+            _selectedIndex = 0;
+          });
+        });
+      }
+    });
   }
 
   @override
@@ -182,20 +220,24 @@ class _StockListState extends State<StockList> {
           }
         },
       ),
-      floatingActionButton: Builder(
-        builder: (BuildContext context) {
-          return FloatingActionButton(
-            onPressed: () {
-              futureData.then((data) {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => TextGenerationPage(stockData: data['stockData'], currencyData: data['currencyData'])),
-                );
-              });
-            },
-            child: Icon(Icons.message_outlined),
-          );
-        },
+      bottomNavigationBar: BottomNavigationBar(
+        items: const <BottomNavigationBarItem>[
+          BottomNavigationBarItem(
+            icon: Icon(Icons.home_outlined),
+            label: 'Home',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.message_outlined),
+            label: 'Generate Advice',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.wallet_outlined),
+            label: 'Wallet',
+          ),
+        ],
+        currentIndex: _selectedIndex,
+        selectedItemColor: const Color.fromARGB(255, 64, 255, 0),
+        onTap: _onItemTapped,
       ),
     );
   }
@@ -251,35 +293,263 @@ class _TextGenerationPageState extends State<TextGenerationPage> {
             children: <Widget>[
               TextField(
                 controller: _controller,
-                decoration: const InputDecoration(
-                  labelText: 'Enter a prompt for financial advice',
+                decoration: InputDecoration(
+                  hintText: 'Enter prompt',
+                  border: OutlineInputBorder(),
                 ),
               ),
               const SizedBox(height: 20),
               ElevatedButton(
-                onPressed: _generateText,
-                child: const Text('Generate Advice'),
+                onPressed: _isLoading ? null : _generateText,
+                child: _isLoading
+                    ? CircularProgressIndicator()
+                    : Text('Generate Text'),
               ),
               const SizedBox(height: 20),
-              if (_isLoading)
-                const CircularProgressIndicator(),
-              if (_generatedText.isNotEmpty)
-                Padding(
-                  padding: const EdgeInsets.all(16.0),
-                  child: Text(
-                    _generatedText,
-                    style: Theme.of(context).textTheme.headlineSmall,
-                  ),
-                ),
+              Text(
+                _generatedText,
+                style: Theme.of(context).textTheme.bodyText1,
+                textAlign: TextAlign.center,
+              ),
             ],
           ),
         ),
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _generateText,
-        tooltip: 'Generate',
-        child: const Icon(Icons.refresh),
+    );
+  }
+}
+
+class WalletPage extends StatefulWidget {
+  @override
+  _WalletPageState createState() => _WalletPageState();
+}
+
+class _WalletPageState extends State<WalletPage> {
+  Timer? _timer;
+
+  @override
+  void initState() {
+    super.initState();
+    _timer = Timer.periodic(Duration(minutes: 1), (timer) {
+      Provider.of<WalletProvider>(context, listen: false).addRandomTransaction();
+    });
+  }
+
+  @override
+  void dispose() {
+    _timer?.cancel();
+    super.dispose();
+  }
+
+  void _navigateToTopUpPage(BuildContext context) async {
+    final result = await Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => TopUpPage()),
+    );
+
+    if (result != null) {
+      double enteredAmount = result;
+      Provider.of<WalletProvider>(context, listen: false).addTransaction(
+        Transaction(type: TransactionType.paid, amount: enteredAmount),
+      );
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('E-Wallet'),
+      ),
+      body: Center(
+        child: Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Consumer<WalletProvider>(
+            builder: (context, walletProvider, child) {
+              return Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    'Wallet Balance',
+                    style: Theme.of(context).textTheme.headline6,
+                  ),
+                  SizedBox(height: 10),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        '₹${walletProvider.walletBalance.toStringAsFixed(2)}',
+                        style: Theme.of(context).textTheme.headline5,
+                      ),
+                      ElevatedButton(
+                        onPressed: () => _navigateToTopUpPage(context),
+                        child: Text('Add money'),
+                      ),
+                    ],
+                  ),
+                  SizedBox(height: 20),
+                  Text(
+                    'Transactions',
+                    style: Theme.of(context).textTheme.headline6,
+                  ),
+                  SizedBox(height: 10),
+                  Expanded(
+                    child: ListView.builder(
+                      itemCount: walletProvider.transactions.length,
+                      itemBuilder: (context, index) {
+                        Transaction transaction = walletProvider.transactions[index];
+                        return ListTile(
+                          leading: Icon(
+                            transaction.type == TransactionType.paid
+                                ? Icons.arrow_upward
+                                : Icons.arrow_downward,
+                            color: transaction.type == TransactionType.paid
+                                ? Colors.red
+                                : Colors.green,
+                          ),
+                          title: Text(transaction.type == TransactionType.paid ? 'Paid' : 'Received'),
+                          subtitle: Text('₹${transaction.amount.toStringAsFixed(2)}'),
+                          trailing: Text('${DateFormat('dd/MM/yyyy').format(transaction.date)}'),
+                        );
+                      },
+                    ),
+                  ),
+                ],
+              );
+            },
+          ),
+        ),
       ),
     );
+  }
+}
+
+class TopUpPage extends StatefulWidget {
+  @override
+  _TopUpPageState createState() => _TopUpPageState();
+}
+
+class _TopUpPageState extends State<TopUpPage> {
+  TextEditingController _amountController = TextEditingController();
+
+  void _setAmount(String amount) {
+    setState(() {
+      _amountController.text = amount;
+    });
+  }
+
+  void _proceedToPayment(BuildContext context) {
+    if (_amountController.text.isNotEmpty) {
+      double enteredAmount = double.tryParse(_amountController.text) ?? 0.0;
+      Navigator.pop(context, enteredAmount);
+    } else {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text('Please enter an amount.'),
+        ),
+      );
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Topup Wallet'),
+      ),
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Text(
+              'Topup Wallet',
+              style: Theme.of(context).textTheme.headline6,
+            ),
+            SizedBox(height: 20),
+            TextField(
+              controller: _amountController,
+              decoration: InputDecoration(
+                labelText: 'Enter Amount',
+              ),
+              keyboardType: TextInputType.number,
+            ),
+            SizedBox(height: 10),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+                ElevatedButton(
+                  onPressed: () => _setAmount('100'),
+                  child: Text('₹100'),
+                ),
+                ElevatedButton(
+                  onPressed: () => _setAmount('200'),
+                  child: Text('₹200'),
+                ),
+                ElevatedButton(
+                  onPressed: () => _setAmount('500'),
+                  child: Text('₹500'),
+                ),
+                ElevatedButton(
+                  onPressed: () => _setAmount('1000'),
+                  child: Text('₹1000'),
+                ),
+              ],
+            ),
+            SizedBox(height: 10),
+            TextField(
+              decoration: InputDecoration(
+                labelText: 'Apply promo code',
+              ),
+            ),
+            SizedBox(height: 10),
+            ElevatedButton(
+              onPressed: () => _proceedToPayment(context),
+              child: Text('Proceed to payment'),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+enum TransactionType { paid, received }
+
+class Transaction {
+  final TransactionType type;
+  final double amount;
+  final DateTime date;
+
+  Transaction({
+    required this.type,
+    required this.amount,
+  }) : date = DateTime.now();
+}
+
+class WalletProvider with ChangeNotifier {
+  double _walletBalance = 50.0;
+  List<Transaction> _transactions = [];
+
+  double get walletBalance => _walletBalance;
+  List<Transaction> get transactions => _transactions;
+
+  void addTransaction(Transaction transaction) {
+    _transactions.add(transaction);
+    if (transaction.type == TransactionType.paid) {
+      _walletBalance += transaction.amount;
+    } else {
+      _walletBalance -= transaction.amount;
+    }
+    notifyListeners();
+  }
+
+  void addRandomTransaction() {
+    Random random = Random();
+    double receivedAmount = random.nextDouble() * 1500;
+    Transaction transaction = Transaction(
+      type: TransactionType.received,
+      amount: receivedAmount,
+    );
+    addTransaction(transaction);
   }
 }
