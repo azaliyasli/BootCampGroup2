@@ -7,6 +7,7 @@ import 'package:google_generative_ai/google_generative_ai.dart';
 import 'package:intl/intl.dart';
 import 'dart:math';
 import 'package:provider/provider.dart';
+import 'dart:convert';
 
 void main() {
   runApp(
@@ -25,7 +26,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
-        primarySwatch: Colors.blue,
+        primarySwatch: Colors.lime,
       ),
       home: const StockList(),
     );
@@ -39,10 +40,30 @@ class StockList extends StatefulWidget {
   _StockListState createState() => _StockListState();
 }
 
-class _StockListState extends State<StockList> {
+class _StockListState extends State<StockList> with SingleTickerProviderStateMixin {
   late Future<Map<String, dynamic>> futureData;
   Timer? _timer;
   int _selectedIndex = 0;
+  late TabController _tabController;
+
+  @override
+  void initState() {
+    super.initState();
+    futureData = fetchData();
+    _timer = Timer.periodic(Duration(minutes: 1), (timer) {
+      setState(() {
+        futureData = fetchData();
+      });
+    });
+    _tabController = TabController(length: 2, vsync: this);
+  }
+
+  @override
+  void dispose() {
+    _timer?.cancel();
+    _tabController.dispose();
+    super.dispose();
+  }
 
   Future<List<List<String>>> getWebsiteData() async {
     final url = Uri.parse('https://www.getmidas.com/canli-borsa/xu100-bist-100-hisseleri');
@@ -66,80 +87,11 @@ class _StockListState extends State<StockList> {
     }
   }
 
-  Future<List<List<String>>> getCurrencyAndGoldData() async {
-    final url = Uri.parse('https://www.qnbfinansbank.enpara.com/hesaplar/doviz-ve-altin-kurlari');
-    final response = await http.get(url);
-    if (response.statusCode == 200) {
-      dom.Document document = parser.parse(response.body);
-      List<List<String>> currencyData = [];
-
-      final rows = document.querySelectorAll('.table tbody tr');
-
-      for (var row in rows) {
-        final cells = row.querySelectorAll('td');
-        List<String> rowData = cells.map((cell) => cell.text.trim()).toList();
-        currencyData.add(rowData);
-      }
-
-      return currencyData;
-    } else {
-      throw Exception('Failed to load data');
-    }
-  }
-
   Future<Map<String, dynamic>> fetchData() async {
     List<List<String>> stockData = await getWebsiteData();
-    List<List<String>> currencyData = await getCurrencyAndGoldData();
     return {
       'stockData': stockData,
-      'currencyData': currencyData,
     };
-  }
-
-  @override
-  void initState() {
-    super.initState();
-    futureData = fetchData();
-    _timer = Timer.periodic(Duration(minutes: 1), (timer) {
-      setState(() {
-        futureData = fetchData();
-      });
-    });
-  }
-
-  @override
-  void dispose() {
-    _timer?.cancel();
-    super.dispose();
-  }
-
-  void _onItemTapped(int index) {
-    setState(() {
-      _selectedIndex = index;
-      if (_selectedIndex == 0) {
-        // Do nothing, already on StockList page
-      } else if (_selectedIndex == 1) {
-        futureData.then((data) {
-          Navigator.push(
-            context,
-            MaterialPageRoute(builder: (context) => TextGenerationPage(stockData: data['stockData'], currencyData: data['currencyData'])),
-          ).then((_) {
-            setState(() {
-              _selectedIndex = 0;
-            });
-          });
-        });
-      } else if (_selectedIndex == 2) {
-        Navigator.push(
-          context,
-          MaterialPageRoute(builder: (context) => WalletPage()),
-        ).then((_) {
-          setState(() {
-            _selectedIndex = 0;
-          });
-        });
-      }
-    });
   }
 
   @override
@@ -147,84 +99,75 @@ class _StockListState extends State<StockList> {
     return Scaffold(
       appBar: AppBar(
         title: Text('Stock List'),
+        bottom: TabBar(
+          controller: _tabController,
+          tabs: [
+            Tab(text: 'Stocks'),
+            Tab(text: 'Currency & Gold'),
+          ],
+        ),
       ),
-      body: FutureBuilder<Map<String, dynamic>>(
-        future: futureData,
-        builder: (context, snapshot) {
-          if (snapshot.connectionState == ConnectionState.waiting) {
-            return Center(child: CircularProgressIndicator());
-          } else if (snapshot.hasError) {
-            return Center(child: Text('Error: ${snapshot.error}'));
-          } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
-            return Center(child: Text('No data found'));
-          } else {
-            var stockData = snapshot.data!['stockData'] as List<List<String>>;
-            var stockColumns = [
-              'Hisse', 'Son', 'Alış', 'Satış', 'Fark', 'En Düşük', 'En Yüksek', 'AOF', 'Hacim TL', 'Hacim Lot'
-            ];
-            var currencyData = snapshot.data!['currencyData'] as List<List<String>>;
-            var currencyColumns = ['Döviz/Altın', 'Alış', 'Satış'];
-
-            return SingleChildScrollView(
-              child: Column(
-                children: [
-                  SingleChildScrollView(
-                    scrollDirection: Axis.horizontal,
-                    child: SingleChildScrollView(
-                      scrollDirection: Axis.vertical,
-                      child: DataTable(
-                        columns: stockColumns
-                            .map((column) => DataColumn(
-                          label: Text(column),
-                        ))
-                            .toList(),
-                        rows: stockData
-                            .map((row) => DataRow(
-                          cells: row
-                              .map((cell) => DataCell(
-                            Text(cell),
-                          ))
-                              .toList(),
-                        ))
-                            .toList(),
+      body: TabBarView(
+        controller: _tabController,
+        children: [
+          FutureBuilder<Map<String, dynamic>>(
+            future: futureData,
+            builder: (context, snapshot) {
+              if (snapshot.connectionState == ConnectionState.waiting) {
+                return Center(child: CircularProgressIndicator());
+              } else if (snapshot.hasError) {
+                return Center(child: Text('Error: ${snapshot.error}'));
+              } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
+                return Center(child: Text('No data found'));
+              } else {
+                var stockData = snapshot.data!['stockData'] as List<List<String>>;
+                var stockColumns = [
+                  'Hisse', 'Son', 'Alış', 'Satış', 'Fark', 'En Düşük', 'En Yüksek', 'AOF', 'Hacim TL', 'Hacim Lot'
+                ];
+                
+                return SingleChildScrollView(
+                  child: Column(
+                    children: [
+                      SingleChildScrollView(
+                        scrollDirection: Axis.horizontal,
+                        child: SingleChildScrollView(
+                          scrollDirection: Axis.vertical,
+                          child: DataTable(
+                            columns: stockColumns
+                                .map((column) => DataColumn(
+                              label: Text(column),
+                            ))
+                                .toList(),
+                            rows: stockData
+                                .map((row) => DataRow(
+                              cells: row
+                                  .map((cell) => DataCell(
+                                Text(cell),
+                              ))
+                                  .toList(),
+                            ))
+                                .toList(),
+                          ),
+                        ),
                       ),
-                    ),
+                    ],
                   ),
-                  SizedBox(height: 20),
-                  Text('Currency and Gold Data', style: Theme.of(context).textTheme.headline6),
-                  SingleChildScrollView(
-                    scrollDirection: Axis.horizontal,
-                    child: SingleChildScrollView(
-                      scrollDirection: Axis.vertical,
-                      child: DataTable(
-                        columns: currencyColumns
-                            .map((column) => DataColumn(
-                          label: Text(column),
-                        ))
-                            .toList(),
-                        rows: currencyData
-                            .map((row) => DataRow(
-                          cells: row
-                              .map((cell) => DataCell(
-                            Text(cell),
-                          ))
-                              .toList(),
-                        ))
-                            .toList(),
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-            );
-          }
-        },
+                );
+              }
+            },
+          ),
+          CurrencyAndGold(),
+        ],
       ),
       bottomNavigationBar: BottomNavigationBar(
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
             icon: Icon(Icons.home_outlined),
             label: 'Home',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.article_outlined),
+            label: 'News',
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.message_outlined),
@@ -234,10 +177,252 @@ class _StockListState extends State<StockList> {
             icon: Icon(Icons.wallet_outlined),
             label: 'Wallet',
           ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.person_outline),
+            label: 'Profile',
+          ),
         ],
-        currentIndex: _selectedIndex,
-        selectedItemColor: const Color.fromARGB(255, 64, 255, 0),
-        onTap: _onItemTapped,
+        selectedItemColor: Color.fromARGB(255, 77, 226, 27),
+        unselectedItemColor: Color.fromARGB(255, 127, 245, 17),
+        onTap: (index) {
+          setState(() {
+            _selectedIndex = index;
+            if (_selectedIndex == 0) {
+              // Do nothing, already on StockList page
+            } else if (_selectedIndex == 1) {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => NewsPage()),
+              ).then((_) {
+                setState(() {
+                  _selectedIndex = 0;
+                });
+              });
+            } else if (_selectedIndex == 2) {
+              futureData.then((data) {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => TextGenerationPage(stockData: data['stockData'])),
+                ).then((_) {
+                  setState(() {
+                    _selectedIndex = 0;
+                  });
+                });
+              });
+            } else if (_selectedIndex == 3) {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => WalletPage()),
+              ).then((_) {
+                setState(() {
+                  _selectedIndex = 0;
+                });
+              });
+            } else if (_selectedIndex == 4) {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => ProfilePage()),
+              ).then((_) {
+                setState(() {
+                  _selectedIndex = 0;
+                });
+              });
+            }
+          });
+        },
+      ),
+    );
+  }
+}
+
+class CurrencyAndGold extends StatefulWidget {
+  @override
+  State<CurrencyAndGold> createState() => _CurrencyAndGoldState();
+}
+
+class _CurrencyAndGoldState extends State<CurrencyAndGold> {
+  @override
+  Widget build(BuildContext context) {
+    final currencyGoldService = CurrencyGoldService();
+
+    return FutureBuilder<List<CurrencyGold>>(
+      future: currencyGoldService.fetchCurrencyGold(),
+      builder: (context, snapshot) {
+        if (snapshot.connectionState == ConnectionState.waiting) {
+          return Center(child: CircularProgressIndicator());
+        } else if (snapshot.hasError) {
+          return Center(child: Text('Error: ${snapshot.error}'));
+        } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
+          return Center(child: Text('No data available'));
+        } else {
+          return ListView.builder(
+            itemCount: snapshot.data!.length,
+            itemBuilder: (context, index) {
+              CurrencyGold item = snapshot.data![index];
+              return ListTile(
+                title: Text(item.shortName),
+                subtitle: Text('Latest: ${item.latest}'),
+              );
+            },
+          );
+        }
+      },
+    );
+  }
+}
+
+class CurrencyGold {
+  final String code;
+  final String shortName;
+  final String fullName;
+  final double buying;
+  final double selling;
+  final double latest;
+  final double changeRate;
+  final double dayMin;
+  final double dayMax;
+  final String lastUpdate;
+
+  CurrencyGold({
+    required this.code,
+    required this.shortName,
+    required this.fullName,
+    required this.buying,
+    required this.selling,
+    required this.latest,
+    required this.changeRate,
+    required this.dayMin,
+    required this.dayMax,
+    required this.lastUpdate,
+  });
+
+  factory CurrencyGold.fromJson(Map<String, dynamic> json) {
+    return CurrencyGold(
+      code: json['code'],
+      shortName: json['ShortName'],
+      fullName: json['FullName'],
+      buying: json['buying'].toDouble(),
+      selling: json['selling'].toDouble(),
+      latest: json['latest'].toDouble(),
+      changeRate: json['changeRate'].toDouble(),
+      dayMin: json['dayMin'].toDouble(),
+      dayMax: json['dayMax'].toDouble(),
+      lastUpdate: json['lastupdate'],
+    );
+  }
+}
+
+
+class CurrencyGoldService {
+  Future<List<CurrencyGold>> fetchCurrencyGold() async {
+    final response = await http.get(
+      Uri.parse(
+          'https://currency-and-gold-prices-api-in-turkish-lira.p.rapidapi.com/economy/currency/exchange-rate?code=USD%2Cgram-altin%2CEUR'),
+      headers: {
+        'x-rapidapi-host':
+            'currency-and-gold-prices-api-in-turkish-lira.p.rapidapi.com',
+        'x-rapidapi-key': '9ffd5196d9mshb9e55f46cb6c496p16171fjsn37705fb0c4b1',
+      },
+    );
+
+    if (response.statusCode == 200) {
+      List<dynamic> data = jsonDecode(response.body)['data'];
+      return data.map((item) => CurrencyGold.fromJson(item)).toList();
+    } else {
+      throw Exception('Failed to load currency and gold data');
+    }
+  }
+}
+
+class News {
+  final String uuid;
+  final String title;
+  final String description;
+  final String keywords;
+  final String snippet;
+  final String url;
+  final String urlToImage;
+  final String language;
+  final String publishedAt;
+  final String source;
+  // Consider creating another class for entities if you need to use them
+  // final List<Entity> entities;
+
+  News({
+    required this.uuid,
+    required this.title,
+    required this.description,
+    required this.keywords,
+    required this.snippet,
+    required this.url,
+    required this.urlToImage,
+    required this.language,
+    required this.publishedAt,
+    required this.source,
+    // this.entities,
+  });
+
+  factory News.fromJson(Map<String, dynamic> json) {
+    return News(
+      uuid: json['uuid'],
+      title: json['title'],
+      description: json['description'],
+      keywords: json['keywords'] ?? '',
+      snippet: json['snippet'] ?? '',
+      url: json['url'],
+      urlToImage: json['image_url'] ?? '',
+      language: json['language'] ?? 'en',
+      publishedAt: json['published_at'],
+      source: json['source'] ?? 'Unknown',
+      // entities: (json['entities'] as List).map((e) => Entity.fromJson(e)).toList(),
+    );
+  }
+}
+
+// Fetch news from API
+Future<List<News>> fetchNews() async {
+  final String apiKey = 'NnipeUp9Uo3myinXPuM3zIf5uzZ4MzYzylPF3QPY';
+  final String url =
+      'https://api.marketaux.com/v1/news/all?countries=us&filter_entities=true&limit=10&published_after=2024-07-18T09:30&api_token=$apiKey';
+  final response = await http.get(Uri.parse(url));
+
+  if (response.statusCode == 200) {
+    List jsonResponse = json.decode(response.body)['data'];
+    return jsonResponse.map((news) => News.fromJson(news)).toList();
+  } else {
+    throw Exception('Failed to load news');
+  }
+}
+
+class NewsPage extends StatelessWidget {
+   @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Latest News'),
+      ),
+      body: FutureBuilder<List<News>>(
+        future: fetchNews(),
+        builder: (context, snapshot) {
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            return Center(child: CircularProgressIndicator());
+          } else if (snapshot.hasError) {
+            return Center(child: Text('Error: ${snapshot.error}'));
+          } else {
+            return ListView.builder(
+              itemCount: snapshot.data!.length,
+              itemBuilder: (context, index) {
+                return ListTile(
+                  title: Text(snapshot.data![index].title),
+                  subtitle: Text(snapshot.data![index].description),
+                  leading: snapshot.data![index].urlToImage.isNotEmpty
+                      ? Image.network(snapshot.data![index].urlToImage)
+                      : null,
+                );
+              },
+            );
+          }
+        },
       ),
     );
   }
@@ -245,9 +430,8 @@ class _StockListState extends State<StockList> {
 
 class TextGenerationPage extends StatefulWidget {
   final List<List<String>> stockData;
-  final List<List<String>> currencyData;
 
-  TextGenerationPage({required this.stockData, required this.currencyData});
+  TextGenerationPage({required this.stockData});
 
   @override
   _TextGenerationPageState createState() => _TextGenerationPageState();
@@ -257,16 +441,31 @@ class _TextGenerationPageState extends State<TextGenerationPage> {
   final TextEditingController _controller = TextEditingController();
   String _generatedText = '';
   bool _isLoading = false;
+  late Future<List<CurrencyGold>> _currencyGoldFuture;
+
+  @override
+  void initState() {
+    super.initState();
+    _currencyGoldFuture = CurrencyGoldService().fetchCurrencyGold();
+  }
 
   Future<void> _generateText() async {
     setState(() {
       _isLoading = true;
     });
 
-    // Convert data to a readable format
+    // Convert stock data to a readable format
     String stockDataString = widget.stockData.map((row) => row.join(', ')).join('\n');
-    String currencyDataString = widget.currencyData.map((row) => row.join(', ')).join('\n');
-    String prompt = 'Based on the following stock data:\n$stockDataString\n\nAnd the following currency and gold data:\n$currencyDataString\n\n${_controller.text}';
+
+    // Fetch currency and gold data
+    List<CurrencyGold> currencyGoldData = await _currencyGoldFuture;
+    String currencyGoldDataString = currencyGoldData.map((item) =>
+      '${item.shortName}: ${item.latest} (${item.changeRate}%)').join('\n');
+
+    // Create the prompt including both stock and currency/gold data
+    String prompt = 'Based on the following stock data:\n$stockDataString\n\n'
+        'And the following currency and gold data:\n$currencyGoldDataString\n\n'
+        '${_controller.text}';
 
     final model = GenerativeModel(model: 'gemini-1.5-flash', apiKey: 'AIzaSyAcosoCfjRV4dIb2rwhgdMppWOPuZcxXVk');
     final content = [Content.text(prompt)];
@@ -551,5 +750,22 @@ class WalletProvider with ChangeNotifier {
       amount: receivedAmount,
     );
     addTransaction(transaction);
+  }
+}
+
+class ProfilePage extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('Profile'),
+      ),
+      body: Center(
+        child: Text(
+          'Profile Content Here',
+          style: Theme.of(context).textTheme.headline4,
+        ),
+      ),
+    );
   }
 }
