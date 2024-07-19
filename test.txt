@@ -1,1 +1,2 @@
-test
+News api from: https://www.marketaux.com/
+Currency API from: https://rapidapi.com/nosyapi/api/currency-and-gold-prices-api-in-turkish-lira
