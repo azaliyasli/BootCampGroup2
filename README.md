@@ -256,6 +256,66 @@ await _auth.signOut(); }}
         }]}
 ```
 
+# 🕙 Sprint 2
+
+## 📒 Sprint Notes:
+
+⚡ `Gemini` integration has been successfully completed. Foreign exchange/gold/stock market data has been stored in the database.
+
+⚡ Foreign `exchange/gold/stock market` and economic news APIs have been successfully pulled and integrated into the application.
+
+⚡ `Firebase` was integrated into the application.
+
+⚡ `Figma` was used for UI/UX design.
+
+## 💯 Expected Point Completion within Sprint:
+
+<img src="./otherFiles/icons/point-icon-2.png" width="90">
+
+### 🧠 Point Completion Logic:
+
+- This sprint, we focused on coding all features of our application. All features have been integrated and we have started the UI/UX design of our application. We equally distributed **250** points for the coding part and **250** points for the UI/UX design. This way, we were able to reach a total of **375** points.
+
+## 🚀 Daily Scrums:
+
+### 📸 Screenshots
+
+![Daily Scrum Screenshot](./sprintTwoFiles/dailyScrumsScreenshots/sprint-two-daily-scrums-ss.png)
+
+## 📅 Sprint Board:
+
+### 📸 Screenshot
+
+![Sprint Board Screenshot](./sprintTwoFiles/sprintBoardScreenshots/sprint-2-sprint-board-ss.png)
+
+## 📱 App Development:
+
+### 📸 Screenshots
+
+![App Development Screenshot](./sprintTwoFiles/appDevelopmentScreenshots/sprint-two-app-development-ss.png)
+
+## 💬 Sprint Review:
+
+⚡ Ahmet pulled stock market data from a website and ensured that the data was updated every minute.
+
+⚡ Ali contributed to the research for updating the stock market data pulled from the website every 5 minutes.
+
+⚡ Ali Cihan found and integrated gold/foreign exchange APIs and economic news APIs into our application, enabling us to set up a personalized news and gold/foreign exchange tracking system.
+
+⚡ Aslı integrated Gemini and set up the collected data in Gemini’s database. She also added an e-wallet feature to the application and participated in the research for gold/foreign exchange APIs.
+
+⚡ Yavuz nearly completed the UI/UX design of our application.
+
+## 👾 What We Learnt In This Sprint:
+
+🚩 We learned Gemini integration.
+
+🚩 We learned how to interpret the data sent to Gemini and how to ensure financial literacy through AI manipulation.
+
+🚩 We learned the use of Dart with a wallet. We understood the importance of establishing the right data structures to work with different APIs in this part of the bootcamp. Each API has its own response and variety of data. We learned how crucial it is to have a clean and high-quality user experience and to minimize backend-related issues by using the right backend/API, data structures, and data types in the user's journey.
+
+🚩 We learned how to fetch data from a website using Flutter, define the necessary libraries for this process, and use different widgets such as DataColumn.
+
 ![Hesapp Cover](./otherFiles/covers/hesapp-cover-5.png)
 
 ## 🔗 Other URLs
