@@ -306,6 +306,15 @@ await _auth.signOut(); }}
 
 ⚡ Yavuz nearly completed the UI/UX design of our application.
 
+## 🌱 Sprint Retrospective:
+
+- An architectural structure will be created within the code.
+- It was decided that Gemini needs to be developed.
+- The UI/UX design will be completed.
+- A video for the application's introduction will be prepared.
+- The .apk output of the application will be generated and shared.
+- Efforts will be made to increase the brand value of the application.
+
 ## 👾 What We Learnt In This Sprint:
 
 🚩 We learned Gemini integration.
