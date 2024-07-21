@@ -72,7 +72,7 @@
 
 ## 🗿 Product Name
 
-<img src="./otherFiles/logo/hesapp-logo.png" alt="hesapp-logo" width="200"/>
+<img src="./otherFiles/logo/hesapp-logo-sh.png" alt="hesapp-logo" width="200"/>
 
 ## 🔗 Product Backlog URL
 
