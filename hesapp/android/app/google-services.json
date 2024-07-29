@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "540811291422",
+    "firebase_url": "https://hesapp-70be5-default-rtdb.firebaseio.com",
+    "project_id": "hesapp-70be5",
+    "storage_bucket": "hesapp-70be5.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:540811291422:android:1d093636c297d3df26370f",
+        "android_client_info": {
+          "package_name": "com.example.hesapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "540811291422-2oc1kloj39f12q7hi6vl04tralcoakpt.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.hesapp",
+            "certificate_hash": "74e8357967a86c1c7bdabb9e5d7b41f7053eee45"
+          }
+        },
+        {
+          "client_id": "540811291422-ffid32nj42ve28cq3l83u8pergr41m66.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDEY-HknztRDA1ktBVb9rjST6V80terHLk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "540811291422-ffid32nj42ve28cq3l83u8pergr41m66.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "540811291422-or32dfn2kk1a9v20644k5u73cbcta6vh.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.hesapp"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
