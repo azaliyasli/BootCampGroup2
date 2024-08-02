@@ -397,7 +397,7 @@ await _auth.signOut(); }}
 
 ## 🔗 Other URLs
 
-<a href="https://youtu.be/8S2ANYEs1AM" target="blank"><img src="./otherFiles/icons/youtube-icon.png" width="25" align="center"> || **Hesapp App Promo Video**</a>
+<a href="https://youtu.be/8S2ANYEs1AM" target="_blank"><img src="./otherFiles/icons/youtube-icon.png" width="25" align="center"> || **Hesapp App Promo Video**</a>
 
 <a href="./otherFiles/logo/Hesapp Logo Branding.pdf"><img src="./otherFiles/icons/pdf-icon.png" width="25" align="center"> || **Hesapp Logo Branding**</a>
 
