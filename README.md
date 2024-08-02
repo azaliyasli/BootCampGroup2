@@ -104,7 +104,7 @@
 
 - Get personalized news updates based on your interests. Receive the latest news on stocks, forex, and the economy tailored to your preferences and portfolio.
 
-#### E-Wallet (Optional):
+#### E-Wallet:
 
 - Manage your digital transactions effortlessly with our integrated e-wallet feature. Securely store your money, make transactions, and keep track of your spending all in one place.
 
@@ -158,6 +158,8 @@
 ⚡ It has been decided to use `Firebase` for the backend and it was decided to use email and Google login for the login system.
 
 ⚡ It has been determined that a chatbot will be used, and for this, `Gemini` will be utilized.
+
+⚡ The logo design was done using `Adobe Illustrator`. The logo design and Brand Identity have been completed.
 
 ## 💯 Expected Point Completion within Sprint:
 
@@ -256,6 +258,8 @@ await _auth.signOut(); }}
         }]}
 ```
 
+![Hesapp Icon](./otherFiles/icons/hesapp-line-icon.png)
+
 # 🕙 Sprint 2
 
 ## 📒 Sprint Notes:
@@ -325,11 +329,77 @@ await _auth.signOut(); }}
 
 🚩 We learned how to fetch data from a website using Flutter, define the necessary libraries for this process, and use different widgets such as DataColumn.
 
+![Hesapp Icon](./otherFiles/icons/hesapp-line-icon.png)
+
+# 🕙 Sprint 3
+
+## 📒 Sprint Notes:
+
+⚡ `Figma` was used for to complete UI/UX design.
+
+⚡ The app promo video was created using `Adobe Premiere Pro`. The app promotional video has been prepared.
+
+## 💯 Expected Point Completion within Sprint:
+
+<img src="./otherFiles/icons/point-icon-2.png" width="90">
+
+### 🧠 Point Completion Logic:
+
+- In this sprint, we focused more on the visual aspects of our application rather than coding. The points were allocated as **290** for UI/UX design and **210** for coding. On the coding side, we fixed Firebase issues, brought Gemini to the highest level, generated an APK of our application, and organized the code files for clean code. Additionally, the app promo video was created. Furthermore, we aimed to complete the UI/UX design which has also been accomplished in this sprint. As a result, we have achieved a perfect score of **500** points.
+
+## 🚀 Daily Scrums:
+
+### 📸 Screenshots
+
+![Daily Scrum Screenshot](./sprintThreeFiles/dailyScrumsScreenshots/daily-scrums-s-3.png)
+
+## 📅 Sprint Board:
+
+### 📸 Screenshot
+
+![Sprint Board Screenshot](./sprintThreeFiles/sprintBoardScreenshots/sprint-3-sprint-board-ss.png)
+
+## 📱 App Development:
+
+### 📸 Screenshots
+
+![App Development Screenshot](./sprintThreeFiles/appDevelopmentScreenshots/ui-design-1.gif)
+![App Development Screenshot](./sprintThreeFiles/appDevelopmentScreenshots/ui-design-2.png)
+![App Development Screenshot](./sprintThreeFiles/appDevelopmentScreenshots/ui-design-3.png)
+![App Development Screenshot](./sprintThreeFiles/appDevelopmentScreenshots/ui-design-4.png)
+
+## 💬 Sprint Review:
+
+⚡ Ahmet made Firebase flawless, completed the architectural organization of the code, elevated Gemini to the next level, and generated the APK.
+
+⚡ Ali Cihan conducted research in the area of generating APKs by reviewing APK documentation.
+
+⚡ Aslı researched the area of generating and downloading APKs and made minor improvements to Gemini.
+
+⚡ Yavuz completed the UI/UX design of our application and prepared a 1-minute product introduction video.
+
+## 🌱 Sprint Retrospective:
+
+- All tasks have been completed, and the application is being prepared for advertising.
+- The application will be upgraded to higher versions based on customer feedback.
+- As a team, we will be preparing to release the beta version of the application.
+- We aim to create social media accounts for 'hesapp' and plan to connect the application with users.
+
+## 👾 What We Learnt In This Sprint:
+
+🚩 We learnt some detailed features on Figma
+
+🚩 We learnt how to build and install apk of an app.
+
+🚩 We learned how to use detailed artificial intelligence and prompts in the application.
+
 ![Hesapp Cover](./otherFiles/covers/hesapp-cover-5.png)
 
 ## 🔗 Other URLs
 
-<a href="./otherFiles/logo/Hesapp Logo Branding.pdf"><img src="./otherFiles/icons/pdf-icon.png" width="20" align="center"> || **Hesapp Logo Branding**</a>
+<a href="https://youtu.be/8S2ANYEs1AM" target="blank"><img src="./otherFiles/icons/youtube-icon.png" width="25" align="center"> || **Hesapp App Promo Video**</a>
+
+<a href="./otherFiles/logo/Hesapp Logo Branding.pdf"><img src="./otherFiles/icons/pdf-icon.png" width="25" align="center"> || **Hesapp Logo Branding**</a>
 
 </body>
 </html>
